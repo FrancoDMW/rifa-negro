@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Solidaria - Una Operación para Negro 🐾</title>
+
+    <!-- SDKs de Google Firebase (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px 10px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1.titulo-principal {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .seccion-historia {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 35px;
+            background-color: #fdfaf6;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid #f1e4d3;
+            text-align: left;
+        }
+
+        .texto-historia {
+            flex: 1 1 300px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            color: #4a4a4a;
+        }
+
+        .texto-historia h2 {
+            color: #e67e22;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .galeria-fotos {
+            flex: 1 1 320px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .foto-card {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #e9ecef;
+        }
+
+        .leyenda {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .item-leyenda {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .box-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+        }
+
+        .verde {
+            background-color: #28a745;
+        }
+
+        .amarillo {
+            background-color: #ffc107;
+        }
+
+        .rojo {
+            background-color: #dc3545;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            gap: 10px;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+        }
+
+        .numero-card {
+            padding: 12px 4px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 65px;
+            transition: transform 0.15s ease-in-out;
+        }
+
+        .numero-card.disponible {
+            background-color: #28a745;
+            cursor: pointer;
+        }
+
+        .numero-card.disponible:hover {
+            transform: scale(1.06);
+            opacity: 0.95;
+        }
+
+        .numero-card.pendiente {
+            background-color: #ffc107;
+            color: #212529;
+            cursor: not-allowed;
+        }
+
+        .numero-card.vendido {
+            background-color: #dc3545;
+            cursor: not-allowed;
+        }
+
+        .comprador-tag {
+            font-size: 0.65rem;
+            margin-top: 4px;
+            font-weight: normal;
+            word-break: break-word;
+            line-height: 1.1;
+        }
+
+        .seccion-contacto-transparencia {
+            background-color: #eef7fc;
+            border: 1px solid #d0e7f5;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            color: #2b5876;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .btn-whatsapp-dudas {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-whatsapp-dudas:hover {
+            transform: scale(1.05);
+        }
+
+        .seccion-premio {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background-color: #f1f3f5;
+            border: 2px solid #e9ecef;
+            padding: 20px;
+            border-radius: 14px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .texto-premio {
+            flex: 1 1 280px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .texto-premio h3 {
+            margin-top: 0;
+            color: #111;
+            font-size: 1.3rem;
+        }
+
+        .foto-premio-container {
+            flex: 0 1 220px;
+            text-align: center;
+        }
+
+        .foto-premio {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 3px solid #fff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: left;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .info-banco {
+            background-color: #e9ecef;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .loading {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #666;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="titulo-principal" id="tituloPagina" onclick="detectarTripleClic()">
+            🐾 Todos por Negro: Gran Rifa Solidaria
+        </h1>
+
+        <div class="seccion-historia">
+            <div class="texto-historia">
+                <h2>¡Ayudemos a Negro a operarse! ❤️</h2>
+                <p>
+                    Hola a todos. Creamos esta rifa solidaria para recaudar fondos para <b>Negro</b>, nuestro perrito
+                    que necesita someterse urgentemente a una <b>cirugía de hernia</b>.
+                </p>
+                <p>
+                    El costo de la intervención veterinaria, los estudios previos y los medicamentos del posoperatorio
+                    es bastante elevado, por lo que cada número que compres es una ayuda inmensa.
+                </p>
+                <p>
+                    <b>¡Gracias de todo corazón por tu granito de arena! 🐶✨</b>
+                </p>
+            </div>
+
+            <div class="galeria-fotos">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=400&q=80"
+                    alt="Negro Foto 1" class="foto-card">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=400&q=80"
+                    alt="Negro Foto 2" class="foto-card">
+                <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=400&q=80"
+                    alt="Negro Foto 3" class="foto-card">
+                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=400&q=80"
+                    alt="Negro Foto 4" class="foto-card">
+            </div>
+        </div>
+
+        <div class="leyenda">
+            <div class="item-leyenda">
+                <div class="box-color verde"></div> Disponible
+            </div>
+            <div class="item-leyenda">
+                <div class="box-color amarillo"></div> En espera de confirmación
+            </div>
+            <div class="item-leyenda">
+                <div class="box-color rojo"></div> Vendido
+            </div>
+        </div>
+
+        <div class="grid-container" id="grid">
+            <div class="loading">Cargando números en tiempo real... ⏳</div>
+        </div>
+
+        <div class="seccion-contacto-transparencia">
+            <p style="margin: 0 0 8px 0;"><b>📋 Transparencia y Consultas:</b></p>
+            <p style="margin: 0;">
+                Si tienes cualquier duda sobre la rifa o deseas ver los comprobantes veterinarios y estudios de Negro,
+                escríbeme directamente:
+            </p>
+            <a href="https://wa.me/5491100000000?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20rifa%20de%20Negro"
+                target="_blank" class="btn-whatsapp-dudas">
+                💬 Contactar por WhatsApp: +54 9 11 0000-0000
+            </a>
+        </div>
+
+        <div class="seccion-premio">
+            <div class="texto-premio">
+                <h3>👕 ¡Premio del Sorteo!</h3>
+                <p>
+                    La camiseta <b>"Piel de Cuervo"</b> se sorteará por la <b>"Quiniela de La Ciudad"</b> el día
+                    <b>01/09/2026</b> (o hasta que se agoten los números).
+                </p>
+                <p>
+                    <b>¡Todos los participantes serán notificados mediante WhatsApp! :)</b>
+                </p>
+            </div>
+            <div class="foto-premio-container">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80"
+                    alt="Camiseta Piel de Cuervo" class="foto-premio">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Formulario -->
+    <div class="modal" id="modalCompra">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('modalCompra')">&times;</span>
+            <h2 id="modalTitulo">Reservar Número</h2>
+
+            <div class="info-banco">
+                <strong>Datos para la transferencia:</strong><br>
+                <b>Banco:</b> Tu Banco<br>
+                <b>Alias:</b> todos.por.negro.mp<br>
+                <b>CBU:</b> 0000000000000000000000<br>
+                <b>Titular:</b> Tu Nombre Completo
+            </div>
+
+            <form id="formReserva" onsubmit="guardarReserva(event)">
+                <input type="hidden" id="numeroSeleccionado">
+
+                <label for="nombre">Nombre y Apellido:</label>
+                <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+
+                <label for="telefono">Teléfono (WhatsApp):</label>
+                <input type="tel" id="telefono" required placeholder="Ej: +54 11 1234 5678">
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" required placeholder="ejemplo@mail.com">
+
+                <p style="font-size: 0.8rem; color: #555; margin-top: 10px;">
+                    * Al enviar los datos el número quedará reservado en <b>AMARILLO</b> para todos los usuarios
+                    mientras confirmamos el pago.
+                </p>
+
+                <button type="submit" class="btn-enviar" id="btnGuardar">Confirmar Reserva y Enviar Comprobante</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Admin -->
+    <div class="modal" id="modalReporte">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('modalReporte')">&times;</span>
+            <h2>Listado de Registro de Compradores</h2>
+            <div id="contenidoReporte"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. CONFIGURACIÓN DE FIREBASE (REEMPLAZA CON TUS CLAVES REALES) ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmN-h6ZXmmi_wUdwBQDqtTB2pPf_K1aHg",
+            authDomain: "rifa-ad925.firebaseapp.com",
+            projectId: "rifa-ad925",
+            storageBucket: "rifa-ad925.firebasestorage.app",
+            messagingSenderId: "781562052365",
+            appId: "1:781562052365:web:f11bac53b066072d5c3a44"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const TOTAL_NUMEROS = 200;
+        let numerosEstado = {};
+
+        // --- 2. ESCUCHAR CAMBIOS EN TIEMPO REAL ---
+        function suscribirACambios() {
+            db.collection("rifa_negro").onSnapshot((snapshot) => {
+                // Limpiar objeto local
+                for (let i = 0; i < TOTAL_NUMEROS; i++) {
+                    const numFormat = String(i).padStart(3, '0');
+                    numerosEstado[numFormat] = { estado: 'disponible', comprador: '', tel: '', email: '' };
+                }
+
+                // Cargar datos que provienen de la nube en tiempo real
+                snapshot.forEach((doc) => {
+                    numerosEstado[doc.id] = doc.data();
+                });
+
+                renderizarGrilla();
+            }, (error) => {
+                console.error("Error al conectar con la base de datos:", error);
+                alert("Error de conexión. Revisa que configuraste bien Firebase.");
+            });
+        }
+
+        // --- 3. DIBUJAR GRILLA EN PANTALLA ---
+        function renderizarGrilla() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < TOTAL_NUMEROS; i++) {
+                const numFormat = String(i).padStart(3, '0');
+                const data = numerosEstado[numFormat];
+
+                const card = document.createElement('button');
+                let claseEstado = 'disponible';
+                let tagTexto = '';
+
+                if (data.estado === 'pendiente') {
+                    claseEstado = 'pendiente';
+                    tagTexto = 'En espera...';
+                    card.onclick = () => alert(`El número ${numFormat} se encuentra en espera de confirmación de pago.`);
+                } else if (data.estado === 'vendido') {
+                    claseEstado = 'vendido';
+                    tagTexto = data.comprador;
+                    card.onclick = () => alert(`El número ${numFormat} ya fue comprado por ${data.comprador}.`);
+                } else {
+                    card.onclick = () => abrirModalCompra(numFormat);
+                }
+
+                card.className = `numero-card ${claseEstado}`;
+                card.innerHTML = `<span>${numFormat}</span>${tagTexto ? `<span class="comprador-tag">${tagTexto}</span>` : ''}`;
+                grid.appendChild(card);
+            }
+        }
+
+        function abrirModalCompra(numero) {
+            document.getElementById('numeroSeleccionado').value = numero;
+            document.getElementById('modalTitulo').innerText = `Reservar Número ${numero}`;
+            document.getElementById('modalCompra').style.display = 'flex';
+        }
+
+        function cerrarModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if (modalId === 'modalCompra') document.getElementById('formReserva').reset();
+        }
+
+        // --- 4. GUARDAR RESERVA EN LA NUBE ---
+        async function guardarReserva(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnGuardar');
+            btn.disabled = true;
+            btn.innerText = "Guardando...";
+
+            const num = document.getElementById('numeroSeleccionado').value;
+            const nombre = document.getElementById('nombre').value;
+            const tel = document.getElementById('telefono').value;
+            const email = document.getElementById('email').value;
+
+            try {
+                // Guardar directamente en la base de datos Firebase
+                await db.collection("rifa_negro").doc(num).set({
+                    estado: 'pendiente',
+                    comprador: nombre,
+                    tel: tel,
+                    email: email,
+                    fecha: new Date().toISOString()
+                });
+
+                alert(`¡Reserva para el número ${num} enviada con éxito! Quedó marcado en AMARILLO.`);
+
+                const mensajeWS = `Hola! Envié los datos para reservar el número ${num} para la rifa de Negro. Mi nombre es ${nombre}. Adjunto comprobante:`;
+                window.open(`https://wa.me/5491100000000?text=${encodeURIComponent(mensajeWS)}`, '_blank');
+
+                cerrarModal('modalCompra');
+            } catch (error) {
+                alert("Ocurrió un error al guardar la reserva: " + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Confirmar Reserva y Enviar Comprobante";
+            }
+        }
+
+        // --- 5. PANEL DE ADMINISTRADOR ---
+        let clicsTitulo = 0;
+        function detectarTripleClic() {
+            clicsTitulo++;
+            if (clicsTitulo === 3) {
+                abrirAdmin();
+                clicsTitulo = 0;
+            }
+            setTimeout(() => clicsTitulo = 0, 1000);
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.ctrlKey && event.shiftKey && (event.key === 'A' || event.key === 'a')) {
+                abrirAdmin();
+            }
+        });
+
+        async function abrirAdmin() {
+            const clave = prompt("Ingresa la contraseña de administrador:");
+            if (clave === "admin123") {
+                const opcion = prompt(
+                    "PANEL DE ADMINISTRACIÓN\n\n" +
+                    "1. Aprobar o Liberar un Número\n" +
+                    "2. Ver Lista Completa de Compradores"
+                );
+
+                if (opcion === "1") {
+                    const num = prompt("Ingresa el número a administrar (ej: 005):");
+                    if (!numerosEstado[num]) {
+                        alert("Número no válido.");
+                        return;
+                    }
+
+                    const data = numerosEstado[num];
+                    let infoActual = `Número: ${num}\nEstado: ${data.estado.toUpperCase()}`;
+                    if (data.comprador) {
+                        infoActual += `\nComprador: ${data.comprador}\nTel: ${data.tel}\nEmail: ${data.email}`;
+                    }
+
+                    const accion = prompt(`${infoActual}\n\nAcción:\n1. Aprobar Pago (Pasar a ROJO / Vendido)\n2. Liberar Número (Pasar a VERDE / Disponible)`);
+
+                    if (accion === "1") {
+                        let nombreFinal = prompt("Nombre del comprador:", data.comprador || "");
+                        if (nombreFinal) {
+                            await db.collection("rifa_negro").doc(num).set({
+                                estado: 'vendido',
+                                comprador: nombreFinal,
+                                tel: data.tel || '',
+                                email: data.email || ''
+                            }, { merge: true });
+                            alert(`Número ${num} cambiado a ROJO en la nube.`);
+                        }
+                    } else if (accion === "2") {
+                        await db.collection("rifa_negro").doc(num).delete();
+                        alert(`Número ${num} LIBERADO a VERDE en la nube.`);
+                    }
+                } else if (opcion === "2") {
+                    mostrarListaCompradores();
+                }
+            } else if (clave) {
+                alert("Contraseña incorrecta.");
+            }
+        }
+
+        function mostrarListaCompradores() {
+            let htmlTabla = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Estado</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            let hayRegistros = false;
+            for (let i = 0; i < TOTAL_NUMEROS; i++) {
+                const numFormat = String(i).padStart(3, '0');
+                const data = numerosEstado[numFormat];
+
+                if (data.estado !== 'disponible') {
+                    hayRegistros = true;
+                    htmlTabla += `
+                        <tr>
+                            <td><b>${numFormat}</b></td>
+                            <td style="color: ${data.estado === 'vendido' ? 'red' : 'orange'}; font-weight:bold;">
+                                ${data.estado.toUpperCase()}
+                            </td>
+                            <td>${data.comprador || '-'}</td>
+                            <td>${data.tel || '-'}</td>
+                            <td>${data.email || '-'}</td>
+                        </tr>
+                    `;
+                }
+            }
+
+            htmlTabla += `</tbody></table>`;
+            if (!hayRegistros) htmlTabla = "<p>Aún no hay números reservados ni vendidos.</p>";
+
+            document.getElementById('contenidoReporte').innerHTML = htmlTabla;
+            document.getElementById('modalReporte').style.display = 'flex';
+        }
+
+        // Iniciar escucha en tiempo real
+        suscribirACambios();
+    </script>
+</body>
+
+</html>
