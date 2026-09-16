@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rifa Solidaria - Una Operación para Negro 🐾</title>
 
-    <link
-        href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA////APLw7QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAACIAACEQAAABEgAAAhIiEREQAAAAEREREQAAAAISIhIhEAAAISAAAAIRAAAiAAAAACIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD//wAAz/MAAIfhAACAAQAAwAMAAOAHAADAAwAAgAEAAIfhAADP8wAA//8AAP//AAD//wAA"
-        rel="icon" type="image/x-icon">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA////APLw7QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAACIAACEQAAABEgAAAhIiEREQAAAAEREREQAAAAISIhIhEAAAISAAAAIRAAAiAAAAACIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD//wAAz/MAAIfhAACAAQAAwAMAAOAHAADAAwAAgAEAAIfhAADP8wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon">
 
     <!-- SDKs de Google Firebase (Compat) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -67,7 +65,7 @@
             color: #fff;
             background-color: #13294b;
             border-radius: 14px;
-            padding: 1%;
+            padding: 15px;
         }
 
         .texto-historia h2 {
@@ -82,7 +80,7 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             background-color: #13294b;
-            padding: 3%;
+            padding: 15px;
             border-radius: 14px;
         }
 
@@ -93,6 +91,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             background-color: #e9ecef;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .foto-card:hover, .foto-premio:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
         }
 
         .seccion-instruccion {
@@ -114,6 +119,7 @@
             color: #fff;
             background-color: #13294b;
             border-radius: 14px;
+            padding: 15px;
         }
 
         .subtitulo {
@@ -146,17 +152,9 @@
             border-radius: 4px;
         }
 
-        .verde {
-            background-color: #28a745;
-        }
-
-        .amarillo {
-            background-color: #ffc107;
-        }
-
-        .rojo {
-            background-color: #dc3545;
-        }
+        .verde { background-color: #28a745; }
+        .amarillo { background-color: #ffc107; }
+        .rojo { background-color: #dc3545; }
 
         .grid-container {
             display: grid;
@@ -234,9 +232,7 @@
             transition: transform 0.2s;
         }
 
-        .btn-whatsapp-dudas:hover {
-            transform: scale(1.05);
-        }
+        .btn-whatsapp-dudas:hover { transform: scale(1.05); }
 
         .seccion-premio {
             display: flex;
@@ -277,6 +273,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             border: 3px solid #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
 
         .modal {
@@ -321,6 +319,18 @@
             font-size: 0.85rem;
         }
 
+        .btn-copiar {
+            background: #fff;
+            color: #13294b;
+            border: none;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
         form label {
             display: block;
             margin-top: 10px;
@@ -356,8 +366,7 @@
             font-size: 0.85rem;
         }
 
-        th,
-        td {
+        th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -371,21 +380,9 @@
         .loading {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #666;
+            color: #fff;
             padding: 40px 0;
-        }
-
-        /* Efecto visual en imágenes ampliables */
-        .foto-card,
-        .foto-premio {
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .foto-card:hover,
-        .foto-premio:hover {
-            transform: scale(1.03);
-            opacity: 0.9;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -403,14 +400,12 @@
                 <p>
                     ¡Hola a todos! Creamos esta rifa solidaria para recaudar fondos para <b>Negro</b>, nuestro perrito
                     que necesita someterse urgentemente a una <b>cirugía de hernia</b>. Actualmente está internado ya
-                    que la hernia
-                    le provoca mucho dolor y le obstruye los riñones y el recto, por lo que no puede ir al baño por su
-                    propia cuenta y corre el riesgo
-                    de que si no se opera termine con una insuficiencia renal que lo separe de nosotros para siempre.
+                    que la hernia le provoca mucho dolor y le obstruye los riñones y el recto, por lo que no puede ir al baño por su
+                    propia cuenta y corre el riesgo de que si no se opera termine con una insuficiencia renal que lo separe de nosotros para siempre.
+                </p>
                 <p>
-                    El costo de la intervención quirurgica, los estudios previos, la internacion y los medicamentos del
-                    posoperatorio
-                    son bastante elevados, por lo que cada número que compres es una ayuda inmensa.
+                    El costo de la intervención quirúrgica, los estudios previos, la internación y los medicamentos del
+                    posoperatorio son bastante elevados, por lo que cada número que compres es una ayuda inmensa.
                 </p>
                 <p>
                     <b>¡Gracias de todo corazón por ayudar! 🐶✨</b>
@@ -418,45 +413,31 @@
             </div>
 
             <div class="galeria-fotos">
-                <img src="https://i.postimg.cc/hvNhfG4s/Whats-App-Image-2026-09-15-at-9-13-17-PM-(1).jpg alt=" Negro
-                    Foto 1" class="foto-card" alt="Negro Foto 1" class="foto-card" onclick="ampliarImagen(this.src)">
-                <img src="https://i.postimg.cc/cCP6rJ1T/Whats-App-Image-2026-09-15-at-9-13-17-PM.jpg" alt="Negro Foto 2"
-                    class="foto-card" alt="Negro Foto 2" class="foto-card" onclick="ampliarImagen(this.src)">
-                <img src="https://i.postimg.cc/SRHjJKQg/Whats-App-Image-2026-09-15-at-9-12-59-PM-(2).jpg"
-                    alt="Negro Foto 3" class="foto-card" alt="Negro Foto 3" class="foto-card"
-                    onclick="ampliarImagen(this.src)">
-                <img src="https://i.postimg.cc/ZnX0CqYV/Whats-App-Image-2026-09-15-at-9-12-59-PM.jpg" alt="Negro Foto 4"
-                    class="foto-card" alt="Negro Foto 4" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/hvNhfG4s/Whats-App-Image-2026-09-15-at-9-13-17-PM-(1).jpg" alt="Negro Foto 1" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/cCP6rJ1T/Whats-App-Image-2026-09-15-at-9-13-17-PM.jpg" alt="Negro Foto 2" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/SRHjJKQg/Whats-App-Image-2026-09-15-at-9-12-59-PM-(2).jpg" alt="Negro Foto 3" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/ZnX0CqYV/Whats-App-Image-2026-09-15-at-9-12-59-PM.jpg" alt="Negro Foto 4" class="foto-card" onclick="ampliarImagen(this.src)">
             </div>
         </div>
 
         <div class="subtitulo">
-            <h3>Con tan solo $5000 ya lo estás ayudando muchisimo u_u</h3><br>
+            <h3>Con tan solo $5000 ya lo estás ayudando muchísimo u_u</h3>
         </div>
 
         <div class="seccion-instruccion">
             <div class="texto-instruccion">
                 <h2>PASOS PARA PARTICIPAR</h2>
                 <h3>1️⃣</h3>
-                <p>
-                    Seleccionar un número disponible (en verde) del listado de abajo.
-                </p>
+                <p>Seleccionar un número disponible (en verde) del listado de abajo.</p>
                 <h3>2️⃣</h3>
-                <p>
-                    Llenar el formulario con sus datos.
-                </p>
+                <p>Llenar el formulario con sus datos.</p>
                 <h3>3️⃣</h3>
-                <p>
-                    Realizar la transferencia ($5000) al alias <b>CASO.TIA.AUTOR</b> (Banco Nacion - Franco Ulzurrun)
-                </p>
+                <p>Realizar la transferencia ($5000) al alias <b>CASO.TIA.AUTOR</b> (Banco Nación - Franco Ulzurrun)</p>
                 <h3>4️⃣</h3>
+                <p>Enviar el comprobante al <b>1150579015</b></p>
+                <h3>--- ATENCIÓN ---</h3>
                 <p>
-                    Enviar el comprobante al <b>1150579015</b>
-                </p>
-                <h3>--- ATENCION ---</h3>
-                <p>
-                    De no recibirse ningun comprobante en <b>1 hora</b>, el numero elegido pasará a quedar
-                    <b>"Disponible" nuevamente.</b>
+                    De no recibirse ningún comprobante en <b>1 hora</b>, el número elegido pasará a quedar <b>"Disponible" nuevamente.</b>
                 </p>
             </div>
         </div>
@@ -465,36 +446,25 @@
             <div class="texto-premio">
                 <h3>💙❤️ ¡Premio de la rifa! ❤️💙</h3>
                 <p>
-                    Para saber quien ganará la camiseta <b>"Piel de Cuervo" (XL)</b>, se usará la <b>nocturna</b> de la
-                    <b>"Quiniela de La Ciudad"</b> del día
-                    <b>01/09/2026</b> (o hasta que se agoten los números).
+                    Para saber quién ganará la camiseta <b>"Piel de Cuervo" (XL)</b>, se usará la <b>nocturna</b> de la
+                    <b>"Quiniela de La Ciudad"</b> del día <b>01/10/2026</b> (o hasta que se agoten los números).
                 </p>
                 <p>
-                    Se elegira al ganador de la rifa teniendo en cuenta los ultimos tres numeros del numero ganador de
-                    la Quiniela de La Ciudad (si los tres ultimos numeros del ganador de la Quiniela son mayores a 199,
-                    se usará el que le sigue atrás hasta tener un numero ganador).
+                    Se elegira al ganador de la rifa teniendo en cuenta los ultimos tres numeros del numero ganador de la Quiniela de La Ciudad (si los tres ultimos numeros del ganador de la Quiniela son mayores a 199, se usará el que le sigue atrás hasta tener un numero ganador).
                 </p>
                 <p>
                     <b>¡Todos los participantes serán notificados mediante WhatsApp! :)</b>
                 </p>
             </div>
             <div class="foto-premio-container">
-                <img src="https://i.postimg.cc/kGLDB5Mv/Whats-App-Image-2026-09-15-at-9-24-57-PM-(1).jpg"
-                    alt="Camiseta Piel de Cuervo" class="foto-premio" alt="Camiseta Piel de Cuervo" class="foto-premio"
-                    onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/kGLDB5Mv/Whats-App-Image-2026-09-15-at-9-24-57-PM-(1).jpg" alt="Camiseta Piel de Cuervo" class="foto-premio" onclick="ampliarImagen(this.src)">
             </div>
         </div>
 
         <div class="leyenda">
-            <div class="item-leyenda">
-                <div class="box-color verde"></div> Disponible
-            </div>
-            <div class="item-leyenda">
-                <div class="box-color amarillo"></div> En espera de confirmación
-            </div>
-            <div class="item-leyenda">
-                <div class="box-color rojo"></div> Vendido
-            </div>
+            <div class="item-leyenda"><div class="box-color verde"></div> Disponible</div>
+            <div class="item-leyenda"><div class="box-color amarillo"></div> En espera de confirmación</div>
+            <div class="item-leyenda"><div class="box-color rojo"></div> Vendido</div>
         </div>
 
         <div class="grid-container" id="grid">
@@ -504,11 +474,9 @@
         <div class="seccion-contacto-transparencia">
             <p style="margin: 0 0 8px 0;"><b>📋 Transparencia y Consultas:</b></p>
             <p style="margin: 0;">
-                Si tienes cualquier duda sobre la rifa o deseas ver los comprobantes veterinarios y estudios de Negro,
-                escríbeme directamente:
+                Si tienes cualquier duda sobre la rifa o deseas ver los comprobantes veterinarios y estudios de Negro, escríbeme directamente:
             </p>
-            <a href="https://wa.me/5491150579015?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20rifa%20de%20Negro"
-                target="_blank" class="btn-whatsapp-dudas">
+            <a href="https://wa.me/5491150579015?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20rifa%20de%20Negro" target="_blank" class="btn-whatsapp-dudas">
                 💬 Contactar por WhatsApp: +54 9 11 5057-9015
             </a>
         </div>
@@ -522,11 +490,11 @@
 
             <div class="info-banco">
                 <strong>Datos para la transferencia:</strong><br>
-                <b>Banco:</b> Banco Nacion<br>
-                <b>Alias:</b> CASO.TIA.AUTOR<br>
-                <b>CBU:</b> 0110090730009021924051<br>
+                <b>Banco:</b> Banco Nación<br>
+                <b>Alias:</b> CASO.TIA.AUTOR <button class="btn-copiar" onclick="copiarTexto('CASO.TIA.AUTOR')">Copiar</button><br>
+                <b>CBU:</b> 0110090730009021924051 <button class="btn-copiar" onclick="copiarTexto('0110090730009021924051')">Copiar</button><br>
                 <b>Titular:</b> Franco Alejandro Ulzurrun<br>
-                <b>ENVIAR COMPROBANTE A:</b> 1150570915
+                <b>ENVIAR COMPROBANTE A:</b> 1150579015
             </div>
 
             <form id="formReserva" onsubmit="guardarReserva(event)">
@@ -542,9 +510,8 @@
                 <input type="email" id="email" required placeholder="ejemplo@mail.com">
 
                 <p style="font-size: 0.8rem; color: #fff; margin-top: 10px;">
-                    1 - Hacer la transferencia primero y luego enviar el comprobante al número 1150579015.<br>
-                    2 - Al enviar los datos el número quedará reservado en <b>AMARILLO</b> para todos los usuarios
-                    mientras confirmamos el pago.
+                    1 - Realiza la transferencia primero.<br>
+                    2 - Al hacer clic en confirmar, el número quedará reservado en <b>AMARILLO</b> y se abrirá WhatsApp para enviar el comprobante.
                 </p>
 
                 <button type="submit" class="btn-enviar" id="btnGuardar">Confirmar Reserva y Enviar Comprobante</button>
@@ -561,15 +528,13 @@
         </div>
     </div>
 
-    <!-- Modal Visor de Imágenes a Pantalla Completa -->
+    <!-- Modal Visor de Imágenes -->
     <div class="modal" id="modalImagen" onclick="cerrarVisorImagen()">
         <span class="close-btn" style="color: white; font-size: 35px; top: 15px; right: 25px;">&times;</span>
-        <img id="imagenAmpliada" src="" alt="Vista ampliada"
-            style="max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.2); margin: auto; display: block;">
+        <img id="imagenAmpliada" src="" alt="Vista ampliada" style="max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.2); margin: auto; display: block;">
     </div>
 
     <script>
-        // --- 1. CONFIGURACIÓN DE FIREBASE (REEMPLAZA CON TUS CLAVES REALES) ---
         const firebaseConfig = {
             apiKey: "AIzaSyBmN-h6ZXmmi_wUdwBQDqtTB2pPf_K1aHg",
             authDomain: "rifa-ad925.firebaseapp.com",
@@ -579,23 +544,19 @@
             appId: "1:781562052365:web:f11bac53b066072d5c3a44"
         };
 
-        // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
         const TOTAL_NUMEROS = 200;
         let numerosEstado = {};
 
-        // --- 2. ESCUCHAR CAMBIOS EN TIEMPO REAL ---
         function suscribirACambios() {
             db.collection("rifa_negro").onSnapshot((snapshot) => {
-                // Limpiar objeto local
                 for (let i = 0; i < TOTAL_NUMEROS; i++) {
                     const numFormat = String(i).padStart(3, '0');
                     numerosEstado[numFormat] = { estado: 'disponible', comprador: '', tel: '', email: '' };
                 }
 
-                // Cargar datos que provienen de la nube en tiempo real
                 snapshot.forEach((doc) => {
                     numerosEstado[doc.id] = doc.data();
                 });
@@ -603,11 +564,10 @@
                 renderizarGrilla();
             }, (error) => {
                 console.error("Error al conectar con la base de datos:", error);
-                alert("Error de conexión. Revisa que configuraste bien Firebase.");
+                alert("Error de conexión con la base de datos.");
             });
         }
 
-        // --- 3. DIBUJAR GRILLA EN PANTALLA ---
         function renderizarGrilla() {
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
@@ -649,43 +609,55 @@
             if (modalId === 'modalCompra') document.getElementById('formReserva').reset();
         }
 
-        // --- 4. GUARDAR RESERVA EN LA NUBE ---
         async function guardarReserva(e) {
             e.preventDefault();
             const btn = document.getElementById('btnGuardar');
             btn.disabled = true;
-            btn.innerText = "Guardando...";
+            btn.innerText = "Reservando...";
 
             const num = document.getElementById('numeroSeleccionado').value;
             const nombre = document.getElementById('nombre').value;
             const tel = document.getElementById('telefono').value;
             const email = document.getElementById('email').value;
 
+            const docRef = db.collection("rifa_negro").doc(num);
+
             try {
-                // Guardar directamente en la base de datos Firebase
-                await db.collection("rifa_negro").doc(num).set({
-                    estado: 'pendiente',
-                    comprador: nombre,
-                    tel: tel,
-                    email: email,
-                    fecha: new Date().toISOString()
+                await db.runTransaction(async (transaction) => {
+                    const sfDoc = await transaction.get(docRef);
+                    if (sfDoc.exists && sfDoc.data().estado !== 'disponible') {
+                        throw "¡Lo sentimos! Este número acaba de ser seleccionado por otra persona.";
+                    }
+
+                    transaction.set(docRef, {
+                        estado: 'pendiente',
+                        comprador: nombre,
+                        tel: tel,
+                        email: email,
+                        fecha: new Date().toISOString()
+                    });
                 });
 
-                alert(`¡Reserva para el número ${num} enviada con éxito! Quedó marcado en AMARILLO.`);
+                alert(`¡Reserva para el número ${num} realizada con éxito!`);
 
-                const mensajeWS = `Hola! Envié los datos para reservar el número ${num} para la rifa de Negro. Mi nombre es ${nombre}. Adjunto comprobante:`;
+                const mensajeWS = `¡Hola! Envié los datos para reservar el número ${num} para la rifa de Negro.\nNombre: ${nombre}\nAdjunto comprobante de pago:`;
                 window.open(`https://wa.me/5491150579015?text=${encodeURIComponent(mensajeWS)}`, '_blank');
 
                 cerrarModal('modalCompra');
             } catch (error) {
-                alert("Ocurrió un error al guardar la reserva: " + error.message);
+                alert(typeof error === 'string' ? error : "Ocurrió un error: " + error.message);
             } finally {
                 btn.disabled = false;
                 btn.innerText = "Confirmar Reserva y Enviar Comprobante";
             }
         }
 
-        // --- 5. PANEL DE ADMINISTRADOR ---
+        function copiarTexto(texto) {
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("Copiado al portapapeles: " + texto);
+            });
+        }
+
         let clicsTitulo = 0;
         function detectarTripleClic() {
             clicsTitulo++;
@@ -786,16 +758,14 @@
             }
 
             htmlTabla += `</tbody></table>`;
-            if (!hayRegistros) htmlTabla = "<p>Aún no hay números reservados ni vendidos.</p>";
+            if (!hayRegistros) htmlTabla = "<p style='color: white;'>Aún no hay números reservados ni vendidos.</p>";
 
             document.getElementById('contenidoReporte').innerHTML = htmlTabla;
             document.getElementById('modalReporte').style.display = 'flex';
         }
 
-        // Iniciar escucha en tiempo real
         suscribirACambios();
 
-        // --- FUNCIONES PARA AMPLIAR IMÁGENES ---
         function ampliarImagen(src) {
             document.getElementById('imagenAmpliada').src = src;
             document.getElementById('modalImagen').style.display = 'flex';
