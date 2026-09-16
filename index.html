@@ -34,7 +34,7 @@
         }
 
         h1.titulo-principal {
-            color: #e4002b;
+            color: #fff;
             font-size: 2.2rem;
             margin-top: 10px;
             margin-bottom: 25px;
@@ -60,11 +60,14 @@
             flex: 1 1 300px;
             line-height: 1.6;
             font-size: 1.05rem;
-            color: #000000;
+            color: #fff;
+            background-color: #13294b;
+            border-radius: 14px;
+            padding: 1%;
         }
 
         .texto-historia h2 {
-            color: #13294b;
+            color: #fff;
             margin-top: 0;
             font-size: 1.5rem;
         }
@@ -73,7 +76,10 @@
             flex: 1 1 320px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 15px;
+            background-color: #13294b;
+            padding: 3%;
+            border-radius: 14px;
         }
 
         .foto-card {
@@ -83,6 +89,35 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             background-color: #e9ecef;
+        }
+
+        .seccion-instruccion {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 35px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid #f1e4d3;
+            text-align: center;
+        }
+
+        .texto-instruccion {
+            flex: 1 1 300px;
+            line-height: 0.6;
+            font-size: 1.05rem;
+            color: #fff;
+            background-color: #13294b;
+            border-radius: 14px;
+        }
+
+        .subtitulo {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            color: #fff;
+            margin-bottom: 20px;
         }
 
         .leyenda {
@@ -362,27 +397,87 @@
             <div class="texto-historia">
                 <h2>¡Ayudemos a Negro a operarse! ❤️</h2>
                 <p>
-                    Hola a todos. Creamos esta rifa solidaria para recaudar fondos para <b>Negro</b>, nuestro perrito
-                    que necesita someterse urgentemente a una <b>cirugía de hernia</b>.
-                </p>
+                    ¡Hola a todos! Creamos esta rifa solidaria para recaudar fondos para <b>Negro</b>, nuestro perrito
+                    que necesita someterse urgentemente a una <b>cirugía de hernia</b>. Actualmente está internado ya
+                    que la hernia
+                    le provoca mucho dolor y le obstruye los riñones y el recto, por lo que no puede ir al baño por su
+                    propia cuenta y corre el riesgo
+                    de que si no se opera termine con una insuficiencia renal que lo separe de nosotros para siempre.
                 <p>
-                    El costo de la intervención veterinaria, los estudios previos y los medicamentos del posoperatorio
+                    El costo de la intervención quirurgica, los estudios previos, la internacion y los medicamentos del
+                    posoperatorio
                     son bastante elevados, por lo que cada número que compres es una ayuda inmensa.
                 </p>
                 <p>
-                    <b>¡Gracias de todo corazón por tu granito de arena! 🐶✨</b>
+                    <b>¡Gracias de todo corazón por ayudar! 🐶✨</b>
                 </p>
             </div>
 
             <div class="galeria-fotos">
-                <img src="https://i.postimg.cc/hvNhfG4s/Whats-App-Image-2026-09-15-at-9-13-17-PM-(1).jpg alt="Negro Foto 1"
-                    class="foto-card" alt="Negro Foto 1" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/hvNhfG4s/Whats-App-Image-2026-09-15-at-9-13-17-PM-(1).jpg alt=" Negro
+                    Foto 1" class="foto-card" alt="Negro Foto 1" class="foto-card" onclick="ampliarImagen(this.src)">
                 <img src="https://i.postimg.cc/cCP6rJ1T/Whats-App-Image-2026-09-15-at-9-13-17-PM.jpg" alt="Negro Foto 2"
                     class="foto-card" alt="Negro Foto 2" class="foto-card" onclick="ampliarImagen(this.src)">
-                <img src="https://i.postimg.cc/SRHjJKQg/Whats-App-Image-2026-09-15-at-9-12-59-PM-(2).jpg" alt="Negro Foto 3"
-                    class="foto-card" alt="Negro Foto 3" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="https://i.postimg.cc/SRHjJKQg/Whats-App-Image-2026-09-15-at-9-12-59-PM-(2).jpg"
+                    alt="Negro Foto 3" class="foto-card" alt="Negro Foto 3" class="foto-card"
+                    onclick="ampliarImagen(this.src)">
                 <img src="https://i.postimg.cc/ZnX0CqYV/Whats-App-Image-2026-09-15-at-9-12-59-PM.jpg" alt="Negro Foto 4"
                     class="foto-card" alt="Negro Foto 4" class="foto-card" onclick="ampliarImagen(this.src)">
+            </div>
+        </div>
+
+        <div class="subtitulo">
+            <h3>Con tan solo $5000 ya lo estás ayudando muchisimo u_u</h3><br>
+        </div>
+
+        <div class="seccion-instruccion">
+            <div class="texto-instruccion">
+                <h2>PASOS PARA PARTICIPAR</h2>
+                <h3>1️⃣</h3>
+                <p>
+                    Seleccionar un número libre (en verde) del listado de abajo.
+                </p>
+                <h3>2️⃣</h3>
+                <p>
+                    Llenar el formulario con sus datos.
+                </p>
+                <h3>3️⃣</h3>
+                <p>
+                    Realizar la transferencia ($5000) al alias <b>CASO.TIA.AUTOR</b> (Banco Nacion - Franco Ulzurrun)
+                </p>
+                <h3>4️⃣</h3>
+                <p>
+                    Enviar el comprobante al <b>1150579015</b>
+                </p>
+                <h3>--- ATENCION ---</h3>
+                <p>
+                    De no recibirse ningun comprobante en <b>1 hora</b>, el numero elegido pasará a quedar
+                    <b>"Disponible" nuevamente.</b>
+                </p>
+            </div>
+        </div>
+
+        <div class="seccion-premio">
+            <div class="texto-premio">
+                <h3>💙❤️ ¡Premio de la rifa! ❤️💙</h3>
+                <p>
+                    Para saber quien ganará la camiseta <b>"Piel de Cuervo"</b>, se usará la <b>nocturna</b> de la
+                    <b>"Quiniela de La Ciudad"</b> del día
+                    <b>01/09/2026</b> (o hasta que se agoten los números).
+                </p>
+                <p>
+                    Se elegira al ganador de la rifa teniendo en cuenta los ultimos tres numeros del numero ganador de
+                    la Quiniela de La Ciudad (si los tres ultimos numeros del ganador de la Quiniela son mayores a 199,
+                    se usará el que le sigue atrás hasta tener un numero ganador).
+                </p>
+                <p>
+                    <b>¡Todos los participantes serán notificados mediante WhatsApp! :)</b>
+                </p>
+            </div>
+            <div class="foto-premio-container">
+                <img src="https://i.postimg.cc/kGLDB5Mv/Whats-App-Image-2026-09-15-at-9-24-57-PM-(1).jpg"
+                    alt="Camiseta Piel de Cuervo" class="foto-premio" alt="Camiseta Piel de Cuervo" class="foto-premio"
+                    onclick="ampliarImagen(this.src)">
             </div>
         </div>
 
@@ -412,24 +507,6 @@
                 target="_blank" class="btn-whatsapp-dudas">
                 💬 Contactar por WhatsApp: +54 9 11 5057-9015
             </a>
-        </div>
-
-        <div class="seccion-premio">
-            <div class="texto-premio">
-                <h3>💙❤️💙 ¡Premio del Sorteo! 💙❤️💙</h3>
-                <p>
-                    La camiseta <b>"Piel de Cuervo"</b> se sorteará por la <b>"Quiniela de La Ciudad"</b> el día
-                    <b>01/09/2026</b> (o hasta que se agoten los números).
-                </p>
-                <p>
-                    <b>¡Todos los participantes serán notificados mediante WhatsApp! :)</b>
-                </p>
-            </div>
-            <div class="foto-premio-container">
-                <img src="https://i.postimg.cc/kGLDB5Mv/Whats-App-Image-2026-09-15-at-9-24-57-PM-(1).jpg"
-                    alt="Camiseta Piel de Cuervo" class="foto-premio" alt="Camiseta Piel de Cuervo" class="foto-premio"
-                    onclick="ampliarImagen(this.src)">
-            </div>
         </div>
     </div>
 
