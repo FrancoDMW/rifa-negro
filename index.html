@@ -17,24 +17,24 @@
         }
 
         body {
-            background-color: #f8f9fa;
+            background-color: #e4002b;
             margin: 0;
             padding: 20px 10px;
             text-align: center;
-            color: #2c3e50;
+            color: #fff;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: #ffffff;
+            background: #13294b;
             padding: 25px;
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
         h1.titulo-principal {
-            color: #2c3e50;
+            color: #e4002b;
             font-size: 2.2rem;
             margin-top: 10px;
             margin-bottom: 25px;
@@ -49,7 +49,7 @@
             gap: 25px;
             align-items: center;
             margin-bottom: 35px;
-            background-color: #fdfaf6;
+            background-color: #fff;
             padding: 20px;
             border-radius: 14px;
             border: 1px solid #f1e4d3;
@@ -60,11 +60,11 @@
             flex: 1 1 300px;
             line-height: 1.6;
             font-size: 1.05rem;
-            color: #4a4a4a;
+            color: #000000;
         }
 
         .texto-historia h2 {
-            color: #e67e22;
+            color: #13294b;
             margin-top: 0;
             font-size: 1.5rem;
         }
@@ -177,7 +177,7 @@
             padding: 20px;
             border-radius: 12px;
             margin-top: 30px;
-            color: #2b5876;
+            color: #13294b;
             font-size: 0.95rem;
             line-height: 1.5;
         }
@@ -217,12 +217,12 @@
             flex: 1 1 280px;
             font-size: 1.05rem;
             line-height: 1.5;
-            color: #333;
+            color: #13294b;
         }
 
         .texto-premio h3 {
             margin-top: 0;
-            color: #111;
+            color: #13294b;
             font-size: 1.3rem;
         }
 
@@ -335,6 +335,19 @@
             color: #666;
             padding: 40px 0;
         }
+
+        /* Efecto visual en imágenes ampliables */
+        .foto-card,
+        .foto-premio {
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .foto-card:hover,
+        .foto-premio:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
     </style>
 </head>
 
@@ -342,7 +355,7 @@
 
     <div class="container">
         <h1 class="titulo-principal" id="tituloPagina" onclick="detectarTripleClic()">
-            🐾 Todos por Negro: Gran Rifa Solidaria
+            🐾 Ayudemos a Negro: Rifa Solidaria 🐾
         </h1>
 
         <div class="seccion-historia">
@@ -354,7 +367,7 @@
                 </p>
                 <p>
                     El costo de la intervención veterinaria, los estudios previos y los medicamentos del posoperatorio
-                    es bastante elevado, por lo que cada número que compres es una ayuda inmensa.
+                    son bastante elevados, por lo que cada número que compres es una ayuda inmensa.
                 </p>
                 <p>
                     <b>¡Gracias de todo corazón por tu granito de arena! 🐶✨</b>
@@ -362,14 +375,14 @@
             </div>
 
             <div class="galeria-fotos">
-                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=400&q=80"
-                    alt="Negro Foto 1" class="foto-card">
-                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=400&q=80"
-                    alt="Negro Foto 2" class="foto-card">
-                <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=400&q=80"
-                    alt="Negro Foto 3" class="foto-card">
-                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=400&q=80"
-                    alt="Negro Foto 4" class="foto-card">
+                <img src="C:\Users\Franco\Downloads\WhatsApp Image 2026-09-15 at 9.13.17 PM (1).jpeg" alt="Negro Foto 1"
+                    class="foto-card" alt="Negro Foto 1" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="C:\Users\Franco\Downloads\WhatsApp Image 2026-09-15 at 9.13.17 PM.jpeg" alt="Negro Foto 2"
+                    class="foto-card" alt="Negro Foto 2" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="C:\Users\Franco\Downloads\WhatsApp Image 2026-09-15 at 9.12.59 PM.jpeg" alt="Negro Foto 3"
+                    class="foto-card" alt="Negro Foto 3" class="foto-card" onclick="ampliarImagen(this.src)">
+                <img src="C:\Users\Franco\Downloads\WhatsApp Image 2026-09-15 at 9.12.58 PM.jpeg" alt="Negro Foto 4"
+                    class="foto-card" alt="Negro Foto 4" class="foto-card" onclick="ampliarImagen(this.src)">
             </div>
         </div>
 
@@ -395,15 +408,15 @@
                 Si tienes cualquier duda sobre la rifa o deseas ver los comprobantes veterinarios y estudios de Negro,
                 escríbeme directamente:
             </p>
-            <a href="https://wa.me/5491100000000?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20rifa%20de%20Negro"
+            <a href="https://wa.me/5491150579015?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20rifa%20de%20Negro"
                 target="_blank" class="btn-whatsapp-dudas">
-                💬 Contactar por WhatsApp: +54 9 11 0000-0000
+                💬 Contactar por WhatsApp: +54 9 11 5057-9015
             </a>
         </div>
 
         <div class="seccion-premio">
             <div class="texto-premio">
-                <h3>👕 ¡Premio del Sorteo!</h3>
+                <h3>💙❤️💙 ¡Premio del Sorteo! 💙❤️💙</h3>
                 <p>
                     La camiseta <b>"Piel de Cuervo"</b> se sorteará por la <b>"Quiniela de La Ciudad"</b> el día
                     <b>01/09/2026</b> (o hasta que se agoten los números).
@@ -413,8 +426,9 @@
                 </p>
             </div>
             <div class="foto-premio-container">
-                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80"
-                    alt="Camiseta Piel de Cuervo" class="foto-premio">
+                <img src="C:\Users\Franco\Downloads\WhatsApp Image 2026-09-15 at 9.24.57 PM (1).jpeg"
+                    alt="Camiseta Piel de Cuervo" class="foto-premio" alt="Camiseta Piel de Cuervo" class="foto-premio"
+                    onclick="ampliarImagen(this.src)">
             </div>
         </div>
     </div>
@@ -427,10 +441,10 @@
 
             <div class="info-banco">
                 <strong>Datos para la transferencia:</strong><br>
-                <b>Banco:</b> Tu Banco<br>
-                <b>Alias:</b> todos.por.negro.mp<br>
-                <b>CBU:</b> 0000000000000000000000<br>
-                <b>Titular:</b> Tu Nombre Completo
+                <b>Banco:</b> Banco Nacion<br>
+                <b>Alias:</b> CASO.TIA.AUTOR<br>
+                <b>CBU:</b> 0110090730009021924051<br>
+                <b>Titular:</b> Franco Alejandro Ulzurrun
             </div>
 
             <form id="formReserva" onsubmit="guardarReserva(event)">
@@ -462,6 +476,13 @@
             <h2>Listado de Registro de Compradores</h2>
             <div id="contenidoReporte"></div>
         </div>
+    </div>
+
+    <!-- Modal Visor de Imágenes a Pantalla Completa -->
+    <div class="modal" id="modalImagen" onclick="cerrarVisorImagen()">
+        <span class="close-btn" style="color: white; font-size: 35px; top: 15px; right: 25px;">&times;</span>
+        <img id="imagenAmpliada" src="" alt="Vista ampliada"
+            style="max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.2); margin: auto; display: block;">
     </div>
 
     <script>
@@ -570,7 +591,7 @@
                 alert(`¡Reserva para el número ${num} enviada con éxito! Quedó marcado en AMARILLO.`);
 
                 const mensajeWS = `Hola! Envié los datos para reservar el número ${num} para la rifa de Negro. Mi nombre es ${nombre}. Adjunto comprobante:`;
-                window.open(`https://wa.me/5491100000000?text=${encodeURIComponent(mensajeWS)}`, '_blank');
+                window.open(`https://wa.me/5491150579015?text=${encodeURIComponent(mensajeWS)}`, '_blank');
 
                 cerrarModal('modalCompra');
             } catch (error) {
@@ -600,7 +621,7 @@
 
         async function abrirAdmin() {
             const clave = prompt("Ingresa la contraseña de administrador:");
-            if (clave === "admin123") {
+            if (clave === "n3gr0$$") {
                 const opcion = prompt(
                     "PANEL DE ADMINISTRACIÓN\n\n" +
                     "1. Aprobar o Liberar un Número\n" +
@@ -690,6 +711,16 @@
 
         // Iniciar escucha en tiempo real
         suscribirACambios();
+
+        // --- FUNCIONES PARA AMPLIAR IMÁGENES ---
+        function ampliarImagen(src) {
+            document.getElementById('imagenAmpliada').src = src;
+            document.getElementById('modalImagen').style.display = 'flex';
+        }
+
+        function cerrarVisorImagen() {
+            document.getElementById('modalImagen').style.display = 'none';
+        }
     </script>
 </body>
 
