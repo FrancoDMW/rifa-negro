@@ -261,6 +261,55 @@
             font-size: 1.3rem;
         }
 
+        /* --- ESTILOS DEL CONTADOR REGRESIVO --- */
+        .contador-contenedor {
+            background-color: #13294b;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .contador-titulo {
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #ffc107;
+        }
+
+        .contador-timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .timer-bloque {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+        }
+
+        .timer-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #e4002b;
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 45px;
+            display: inline-block;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            margin-top: 4px;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+
         .foto-premio-container {
             flex: 0 1 220px;
             text-align: center;
@@ -455,6 +504,29 @@
                 <p>
                     <b>¡Todos los participantes serán notificados mediante WhatsApp! :)</b>
                 </p>
+
+                <!-- BLOQUE DEL CONTADOR REGRESIVO -->
+                <div class="contador-contenedor">
+                    <div class="contador-titulo">⏰ Tiempo restante para el sorteo:</div>
+                    <div class="contador-timer" id="contadorTimer">
+                        <div class="timer-bloque">
+                            <span class="timer-num" id="dias">00</span>
+                            <span class="timer-label">Días</span>
+                        </div>
+                        <div class="timer-bloque">
+                            <span class="timer-num" id="horas">00</span>
+                            <span class="timer-label">Hs</span>
+                        </div>
+                        <div class="timer-bloque">
+                            <span class="timer-num" id="minutos">00</span>
+                            <span class="timer-label">Min</span>
+                        </div>
+                        <div class="timer-bloque">
+                            <span class="timer-num" id="segundos">00</span>
+                            <span class="timer-label">Seg</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="foto-premio-container">
                 <img src="https://i.postimg.cc/kGLDB5Mv/Whats-App-Image-2026-09-15-at-9-24-57-PM-(1).jpg" alt="Camiseta Piel de Cuervo" class="foto-premio" onclick="ampliarImagen(this.src)">
@@ -764,7 +836,36 @@
             document.getElementById('modalReporte').style.display = 'flex';
         }
 
+        // --- LÓGICA DEL CONTADOR REGRESIVO ---
+        function iniciarContador() {
+            // Fecha objetivo: 01 de Octubre de 2026 a las 23:00:00 hs
+            const fechaObjetivo = new Date("2026-10-01T23:00:00").getTime();
+
+            const intervalo = setInterval(() => {
+                const ahora = new Date().getTime();
+                const diferencia = fechaObjetivo - ahora;
+
+                if (diferencia <= 0) {
+                    clearInterval(intervalo);
+                    document.getElementById("contadorTimer").innerHTML = "<p style='color:#ffc107; font-weight:bold; margin:0;'>¡El sorteo ha comenzado! Buena suerte a todos 🤞</p>";
+                    return;
+                }
+
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                document.getElementById("dias").innerText = String(dias).padStart(2, '0');
+                document.getElementById("horas").innerText = String(horas).padStart(2, '0');
+                document.getElementById("minutos").innerText = String(minutos).padStart(2, '0');
+                document.getElementById("segundos").innerText = String(segundos).padStart(2, '0');
+            }, 1000);
+        }
+
+        // Iniciar servicios
         suscribirACambios();
+        iniciarContador();
 
         function ampliarImagen(src) {
             document.getElementById('imagenAmpliada').src = src;
